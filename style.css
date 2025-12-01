@@ -1,0 +1,960 @@
+/* ---------------------------- */
+/* 🔧 RESET BÁSICO */
+/* ---------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg: #000;
+  --color-text-light: #E0E0E0;
+  --color-accent-gold: #D4B494; 
+  --color-dark-text: #1a1a1a;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+a {
+  color: var(--color-text-light);
+  text-decoration: none;
+}
+
+/* ---------------------------- */
+/* 🎬 ESTRUTURA GLOBAL */
+/* ---------------------------- */
+body {
+  height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text-light);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden; 
+  cursor: none;
+}
+
+/* CLASSE DE TRAVA DE ROLAGEM */
+.scroll-locked {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow-y: scroll; 
+}
+
+/* ---------------------------- */
+/* 🏞️ FUNDOS FIXOS (Ajustado com will-change) */
+/* ---------------------------- */
+#visual-fixed-bg,
+#three-bg,
+#background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100vh;
+  object-fit: cover;
+  transition: opacity 1s ease; 
+  will-change: opacity, transform;
+}
+
+#background-image {
+  z-index: -3; 
+  opacity: 0.7; 
+}
+
+#three-bg {
+  z-index: -2;
+  opacity: 1;
+}
+
+#visual-fixed-bg {
+  z-index: -1;
+}
+
+/* ---------------------------- */
+/* 💡 EFEITO SPOTLIGHT */
+/* ---------------------------- */
+#spotlight-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100vh;
+  background: radial-gradient(
+      circle 350px at var(--x, 50%) var(--y, 50%),
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.9) 85%,
+      rgba(0, 0, 0, 1) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ---------------------------- */
+/* 📜 ÁREA DE SCROLL */
+/* ---------------------------- */
+#scroll-main {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+#scroll-content-height {
+  font-family: 'Bodoni Moda', serif;
+  height: 900vh; 
+  width: 100%;
+  position: relative;
+}
+
+/* ---------------------------- */
+/* ✴️ CURSOR PERSONALIZADO (Ajustes para interatividade) */
+/* ---------------------------- */
+.custom-cursor {
+  position: fixed;
+  width: 8px; 
+  height: 8px; 
+  border-radius: 50%;
+  background-color: var(--color-accent-gold); 
+  opacity: 0.8; 
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  will-change: transform;
+}
+
+a, button, .cta-button-fixed, [role="tab"] {
+  cursor: pointer !important; 
+}
+
+/* ❌ MODIFICAÇÃO: Remove a borda de foco (caixa) em todos os links e botões */
+a:focus, button:focus, .tab-button:focus, #about-us-close:focus {
+    outline: none !important;
+}
+
+/* ---------------------------- */
+/* 🎯 CENTRALIZAÇÃO DO CONTEÚDO */
+/* ---------------------------- */
+.scene-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity, transform; 
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* ---------------------------- */
+/* 🪶 TIPOGRAFIA DE LUXO */
+/* ---------------------------- */
+
+/* 🎯 NOVO: Estilo da Logo na Cena 1 */
+.hero-logo {
+    max-width: 70vw; 
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+    will-change: transform, opacity;
+}
+
+.hero-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 8vw;
+  letter-spacing: 2vw;
+  line-height: 0.9;
+  color: var(--color-text-light);
+  font-weight: 100;
+  display: none !important; 
+}
+
+.hero-subtitle {
+  font-size: 2vw;
+  margin-top: 10px;
+  opacity: 3;
+  font-style: italic;
+  font-weight: 100;
+  display: none !important;
+}
+
+.narrative-text {
+  font-size: 4vw;
+  max-width: 60vw;
+  font-family: var(--font-serif);
+  color: var(--color-text-light);
+  line-height: 1.3;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.definition-text {
+  font-size: 2.5vw;
+  max-width: 70vw;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-accent-gold);
+}
+
+.cta-button-fixed:hover {
+  background-color: #F7D8B5; 
+}
+
+
+/* ---------------------------- */
+/* 🧴 CENA 3/4 — PRODUTO E ABAS (DESKTOP) */
+/* ---------------------------- */
+.product-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5vw; 
+  pointer-events: auto; 
+}
+
+.product-container {
+  display: flex;
+  justify-content: space-between; 
+  align-items: flex-start;
+  max-width: 1400px; 
+  width: 100%;
+  margin-top: 150px;
+}
+
+.product-visual {
+  flex: 0 0 55%; 
+  padding-left: 50px; 
+}
+
+.product-info {
+  flex: 0 0 40%; 
+  padding-right: 50px;
+  position: relative; 
+}
+
+.product-title-large {
+  font-family: var(--font-serif);
+  font-size: 4vw; 
+  line-height: 0.9;
+  letter-spacing: 0.5vw;
+  color: var(--color-text-light);
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+
+.product-subtitle {
+  font-size: 0.7vw;
+  color: var(--color-accent-gold);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+
+/* Placeholder Frasco com IMAGEM DE FUNDO */
+#bottle-image-placeholder-1, 
+#bottle-image-placeholder-2 {
+  width: 100%;
+  height: 70vh; 
+  
+  background: none; 
+  background-color: transparent; 
+  
+  margin-top: 2vh;
+  box-shadow: none; 
+  
+  opacity: 0;
+  will-change: transform, opacity, filter; 
+  
+  /* ESTILOS DA IMAGEM REAL */
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* Garantir que o frasco esteja acima do fundo */
+  z-index: 5; 
+  position: relative;
+}
+
+/* === PRODUTO 1: DARK PULSE === */
+#bottle-image-placeholder-1 {
+    background-image: url('https://res.cloudinary.com/dsl2iobtt/image/upload/f_auto/v1764620387/38_bdwsgj.png');
+    background-color: rgba(30, 20, 15, 0); 
+    opacity: 1; 
+}
+
+/* === PRODUTO 2: ETERNAL GOLD === */
+#bottle-image-placeholder-2 {
+    background-image: url('https://res.cloudinary.com/dsl2iobtt/image/upload/f_auto/v1764620390/40_dpg8sp.png');
+    background-color: rgba(30, 20, 15, 0); 
+    opacity: 1;
+}
+
+
+/* --- Navegação de Abas --- */
+.tabs-navigation {
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  color: var(--color-text-light);
+  font-family: var(--font-sans);
+  font-size: 1em;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: color 0.3s, border-bottom 0.3s;
+  opacity: 0.6;
+  white-space: nowrap;
+  
+  position: relative; 
+  z-index: 20;
+}
+
+
+.tab-button.active {
+  color: var(--color-accent-gold);
+  /* ❌ MODIFICAÇÃO: Remove a borda de baixo do botão de aba ativo */
+  border-bottom: none; 
+  opacity: 1;
+}
+
+/* --- Conteúdo da Aba (BASE PARA DESKTOP) --- */
+.tab-content {
+    position: relative; 
+    padding-top: 20px;
+    transition: none; 
+    
+    /* ⚠️ DESKTOP FIX: Garante que o conteúdo se expanda e NÃO role no desktop */
+    max-height: initial; 
+    overflow-y: visible;
+}
+
+/* Estado INATIVO (apenas para sair do fluxo e garantir que o clique não funcione) */
+.tab-content:not(.active) {
+  position: absolute; 
+  top: 20px; 
+  left: 0;
+  width: 100%;
+  pointer-events: none; 
+}
+
+.tab-content h3 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: var(--color-accent-gold);
+}
+
+.tab-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tab-content li {
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+/* 🎯 NOVO: Botão de Compra dos Produtos (Scene 3 e 4) */
+.product-shop-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-accent-gold); 
+    color: var(--color-dark-text); 
+    padding: 14px 30px; 
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.9em;
+    letter-spacing: 2px; 
+    border-radius: 2px;
+    margin-top: 30px; 
+    transition: background-color 0.3s ease, transform 0.2s; 
+    text-transform: uppercase;
+    will-change: transform;
+}
+
+.product-shop-button:hover {
+    background-color: #F7D8B5; 
+    transform: translateY(-2px);
+}
+
+.product-shop-button i {
+    margin-right: 10px;
+    font-size: 1.1em;
+}
+
+
+/* ---------------------------- */
+/* 🧭 HEADER E FOOTER */
+/* ---------------------------- */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px 50px;
+}
+
+.main-header .logo {
+  font-family: var(--font-serif);
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--color-accent-gold);
+}
+
+.main-header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.main-header nav a {
+  font-family: var(--font-sans);
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+  text-transform: uppercase;
+}
+
+.main-header nav a:hover,
+.main-header nav a:focus { 
+  color: var(--color-accent-gold);
+  /* ❌ MODIFICAÇÃO: Removido o transform: scale e opacity para não mudar o movimento/tamanho */
+}
+
+.main-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background: #000;
+  z-index: 999;
+  font-size: 0.7em;
+  font-weight: 300;
+}
+
+.main-footer a {
+  color: var(--color-text-light); 
+  text-decoration: underline; 
+  transition: color 0.3s ease;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.main-footer a:hover {
+  color: var(--color-accent-gold);
+}
+
+/* ---------------------------------- */
+/* 📖 SEÇÃO QUEM SOMOS (SLIDE LATERAL) - COM LIQUID GLASS E TAMANHO AJUSTADO */
+/* ---------------------------------- */
+#about-us-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-bg); 
+    color: var(--color-text-light);
+    z-index: 950; 
+    
+    transform: translateX(100%); 
+    pointer-events: none;
+    will-change: transform;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5vw;
+    overflow-y: auto; 
+}
+
+.who {
+  display: block;        
+  margin-left: auto;     
+  margin-right: auto;    
+  
+  margin-bottom: 30px;   
+  max-width: 100%;       
+  height: auto;          
+  
+  width: 200px;          
+}
+
+
+#about-us-page.active {
+    pointer-events: auto;
+}
+
+/* --- QUEM SOMOS: LIQUID GLASS APLICADO AQUI --- */
+.about-us-content {
+    max-width: 800px; 
+    width: 100%;
+    text-align: left;
+    border-radius: 20px; 
+    
+    /* ESTILO LIQUID GLASS */
+    background: rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); 
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+
+    padding: 30px; 
+}
+
+.about-us-content p {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    font-weight: 300;
+    
+}
+
+.slide-title {
+    font-size: 2vw;
+    font-style: italic;
+    color: var(--color-accent-gold);
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212, 180, 148, 0.3);
+    padding-bottom: 10px;
+}
+
+.contact-info {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#about-us-close {
+    margin-top: 30px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    border-radius: 50px;
+    /* ❌ MODIFICAÇÃO: Remove a borda do botão de fechar Quem Somos */
+    border: none; 
+    color: var(--color-accent-gold);
+    background: transparent;
+    padding: 10px 0; /* Adiciona padding para manter o tamanho */
+}
+
+#about-us-close:hover {
+    background-color: var(--color-accent-gold);
+    color: var(--color-dark-text);
+}
+
+/* -------------------------------------------------------------------------------------- */
+/* 🚨 ESTILOS DE CONTATO (Aplicado ao .contact-area com Liquid Glass) */
+/* -------------------------------------------------------------------------------------- */
+.contact-area {
+    
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 30px; 
+    border-radius: 20px;
+    
+    background: rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); 
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    
+    max-width: 500px; 
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    pointer-events: auto;
+}
+
+/* Ajustes nos campos de input para combinar com o Liquid Glass (Se você adicionar formulário) */
+.contact-area input[type="text"], 
+.contact-area input[type="email"], 
+.contact-area textarea {
+  background: rgba(255, 255, 255, 0.8); 
+  border: 1px solid rgba(255, 255, 255, 0.5); 
+  border-radius: 8px;
+  color: #000; 
+  padding: 12px;
+  width: 100%;
+  margin-bottom: 15px;
+  font-family: var(--font-sans);
+}
+
+/* Estilo para o botão de envio (Se houver) */
+.contact-area button[type="submit"] {
+  background: var(--color-accent-gold);
+  color: var(--color-dark-text);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-area button[type="submit"]:hover {
+  background: #F7D8B5; 
+}
+
+
+/* --- LINKS SOCIAIS (INSTAGRAM E LOJA - AGORA JUNTOS E SÓ ÍCONES) --- */
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 40px; 
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.social-links a {
+  font-size: 2.2em;
+  font-weight: 500;
+  transition: color 0.3s, transform 0.2s;
+  color: var(--color-text-light);
+  line-height: 1;
+}
+
+.social-links a:hover {
+  color: var(--color-accent-gold);
+  transform: scale(1.1);
+}
+
+.social-links i {
+  margin-right: 0;
+}
+
+/* ⚠️ CORREÇÃO: COR DO TEXTO DO WHATSAPP */
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #25D366; 
+    color: white; 
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 25px; 
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.whatsapp-button i {
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
+.whatsapp-button:hover {
+    background-color: #128C7E;
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+/* --- ESTILO DA LOGO DE IMAGEM --- */
+
+.logo-link {
+  display: flex;
+  align-items: center; 
+  height: 100%;
+}
+
+.logo-image {
+  height: 50px; 
+  width: auto;
+  cursor: pointer;
+}
+
+
+/* --- ESTILOS DO MENU MOBILE --- */
+
+.mobile-menu-toggle {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------------------- */
+/* 📱 AJUSTES RESPONSIVOS (MOBILE) - CORREÇÕES PRINCIPAIS AQUI */
+/* -------------------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  
+  /* Mostrar o botão de 3 riscos */
+  .mobile-menu-toggle {
+      display: block;
+      background: transparent;
+      border: none;
+      color: var(--color-accent-gold);
+      font-size: 1.8rem;
+      cursor: pointer;
+      z-index: 1100; 
+  }
+
+  /* 1. Menu Mobile */
+  .main-header { padding: 20px 20px; }
+  .main-header nav {
+      display: flex; 
+      position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.95); 
+      flex-direction: column; justify-content: center; align-items: center;
+      transform: translateY(-100%); transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+      z-index: 1050;
+  }
+  .main-header nav.active { transform: translateY(0); }
+  .main-header nav ul { flex-direction: column; gap: 40px; text-align: center; }
+  .main-header nav a { font-size: 1.5rem; font-weight: 300; }
+
+
+  /* 2. Layout da Cena de Produto (CORREÇÃO DE ROLAGEM) */
+  .scene-overlay.product-layout {
+      height: 100svh; /* Usa svh para melhor compatibilidade mobile */
+      -webkit-overflow-scrolling: touch;
+      padding-top: 100px;
+      padding-bottom: 50px;
+      display: block !important; /* Desabilita o Flexbox no nível da cena */
+      align-items: center !important; 
+      justify-content: center !important;
+  }
+
+  /* 3. Container em COLUNA (Força Pilha Vertical) */
+  .product-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 20px 0; /* ⬅️ Padding bottom removido (era 40px) */
+    gap: 10px;
+  }
+
+  /* 4. Bloco Visual (Título + Frasco) */
+  .product-visual {
+    flex: 0 0 auto; 
+    width: 100% !important; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    height: auto; 
+    min-height: 45vh; /* Garante que o visual tenha espaço */
+    margin-top: 300px; /* ⬅️ Adiciona margem superior para descer o bloco visual */
+  }
+
+  /* Títulos de Produto (Ajustados) */
+  .product-title-large {
+    /* 🎯 TÍTULO PRINCIPAL: Diminuído de 3rem para 2.5rem */
+    font-size: 2.5rem !important; 
+    text-align: center;
+    width: 100%;
+    margin-bottom: 8px; /* Espaçamento ajustado */
+    line-height: 1;
+    letter-spacing: normal;
+  }
+  
+  .product-subtitle {
+    /* SUBTÍTULO: Diminuído de 0.9rem para 0.8rem */
+    font-size: 0.8rem;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15px; /* Espaçamento ajustado */
+    display: block;
+    letter-spacing: 1px;
+  }
+
+  /* O Frasco (Ajuste de Altura) */
+  #bottle-image-placeholder-1, 
+  #bottle-image-placeholder-2 {
+      width: 80% !important; 
+      height: 30vh !important; /* ⬅️ REDUZIDO: de 35vh para 30vh para encurtar */
+      margin: 0 auto !important;
+      
+      background-size: contain !important;
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+  }
+
+  /* 5. Bloco de Texto e Abas */
+.product-info {
+  flex: 0 0 auto;
+    width: 100% !important; 
+    padding: 0 20px 0 !important; /* Removido padding-bottom */
+    margin-top: 0;
+    position: relative;
+    text-align: left;
+
+    /* ⚠️ MUDANÇA CRÍTICA: REMOVE AS RESTRIÇÕES DE ROLAGEM E ALTURA DAQUI */
+    max-height: initial !important; 
+    overflow-y: visible !important; 
+    -webkit-overflow-scrolling: auto;
+}
+  
+
+  /* --- Conteúdo da Aba (SCROLL APENAS AQUI) --- */
+.tab-content {
+  position: relative; 
+  padding-top: 20px;
+  transition: none; 
+
+  /* ⚠️ MUDANÇA CRÍTICA: Torna APENAS o texto da aba rolável */
+  
+  /* max-height: 45vh deixa espaço para o botão, navegação e rodapé */
+  max-height: 45vh; 
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  
+  /* Adiciona padding interno para que a barra de rolagem não esconda o texto */
+  padding-right: 15px; 
+  padding-bottom: 300px; /* Garante que o fim do texto role para fora do rodapé fixo */
+}
+
+/* Estado INATIVO (manter) */
+/* ... (regra para .tab-content:not(.active) segue igual) ... */
+
+  /* Altera o tamanho de todos os parágrafos dentro das abas de produto */
+    .tab-content p {
+        font-size: 0.95rem; /* Exemplo: De 1rem para 0.95rem (pouco menor) */
+        line-height: 1.5;   /* Melhora a legibilidade */
+    }
+
+    /* Altera o título principal das abas (ex: "Details") */
+    .tab-content h3 {
+        font-size: 1.5rem; /* Exemplo: De 1.8em para 1.5rem */
+    }
+    
+    /* Altera o tamanho das listas de pirâmide olfativa */
+    .tab-content li {
+        font-size: 0.9rem; /* Exemplo: De 1rem para 0.9rem */
+    }
+
+  /* Títulos da Home (Corrigidos para não serem gigantes) */
+  .hero-title { 
+      font-size: 3rem !important; 
+      letter-spacing: 0.5rem !important; 
+      line-height: 1.1 !important; 
+  }
+  
+  /* ⚠️ NOVO: Ajuste do tamanho da Logo na Scene 1 no Mobile */
+  .hero-logo {
+      max-width: 90vw; 
+  }
+  
+  .hero-subtitle {
+      font-size: 1.1rem !important;
+      margin-top: 10px !important;
+      max-width: 90% !important; 
+  }
+  .narrative-text { font-size: 1.5rem; max-width: 100%; padding: 0; }
+  .definition-text { font-size: 1.2rem; }
+  
+  /* Footer fixo no mobile */
+  .main-footer { font-size: 0.65em; padding: 15px 10px; }
+
+
+  /* --- AJUSTES DE TAMANHO MOBILE PARA LIQUID GLASS --- */
+  
+  /* ⚠️ CORREÇÃO: Contato no Mobile */
+  .contact-area {
+    max-width: 100% !important; 
+    padding: 30px 20px !important;
+  }
+
+  /* Ajuste Quem Somos (Slide Lateral) */
+  #about-us-page { 
+      padding: 0 20px; 
+      padding-top: 80px !important; 
+      padding-bottom: 50px !important; 
+      height: 100vh !important;
+  }
+
+  .about-us-content { 
+      width: 100%; 
+      max-width: 100% !important; 
+      padding: 40px 20px !important; 
+      backdrop-filter: blur(8px); 
+      -webkit-backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .slide-title { font-size: 1.2rem; }
+  .about-us-content p { font-size: 0.7em; }
+
+  /* Ajuste do botão de compra no mobile */
+  .product-shop-button {
+    width: 100%;
+    justify-content: center;
+    /* 🎯 BOTÃO: Tamanho ajustado de 1em para 0.9em, padding para ser mais compacto */
+    font-size: 0.9em;
+    padding: 12px 20px;
+  }
+
+
+/* Garante que todas as cenas ocupem a tela toda e centralizem o conteúdo */
+#scene-1, #scene-2, #scene-3, #scene-4, #scene-5, #scene-6 {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center; /* Centraliza Verticalmente */
+  align-items: center;     /* Centraliza Horizontalmente */
+  min-height: 100vh;       /* Altura total da tela */
+  width: 100%;
+  position: fixed;         /* Ou absolute, para ficarem umas sobre as outras */
+  top: 0;
+  left: 0;
+  padding: 20px;           /* Margem de segurança para não colar na borda */
+  box-sizing: border-box; 
+}
+
+/* 1. Desabilita o clique na área total da cena de contato */
+    /* Isso garante que a área de 100vh da cena não intercepte cliques */
+    #scene-6 {
+      pointer-events: none !important;
+  }
+  
+  /* 2. Re-habilita o clique apenas nos elementos interativos dentro da cena 6 */
+  /* Agora, apenas a área do botão FALE CONOSCO e os links sociais serão clicáveis */
+  .contact-area,
+  .whatsapp-button, 
+  .social-links a {
+      pointer-events: auto !important;
+  }
+  /* 🚨 FIM DO BLOCO DE CORREÇÃO DO CLIQUE 🚨 */
+  
+  /* Seu bloco de layout que você precisava (garante que todas as cenas ocupem a tela toda...) */
+  #scene-1, #scene-2, #scene-3, #scene-4, #scene-5, #scene-6 {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 20px;
+      box-sizing: border-box;
+  }
+}
